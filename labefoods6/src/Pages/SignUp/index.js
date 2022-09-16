@@ -1,11 +1,10 @@
-import React from 'react'
+import React from "react"
 
-const SignUp=()=>{
-
+export const SignupPage=()=>{
     return(
         <>
-        <input></input>
+            <h1>Signup</h1>
         </>
-        )
+    )
 }
-export default SignUp;
+
