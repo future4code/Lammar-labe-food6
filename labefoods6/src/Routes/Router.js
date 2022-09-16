@@ -24,7 +24,7 @@ const Router =()=>{
                 <Route path='/feed' element={<FeedPage />}/>
                 <Route path='/meucarrinho' element={<MeuCarrinhoPage />}/>
                 <Route path='/meuperfil' element={<MeuPerfilPage />}/>
-                <Route path='/resultado' element={<ResultadoPage />}/>
+                <Route path='/resultado/:id' element={<ResultadoPage />}/>
             </Routes>
         </BrowserRouter>
     )
