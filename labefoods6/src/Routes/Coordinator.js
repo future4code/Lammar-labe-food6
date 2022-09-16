@@ -9,7 +9,6 @@ export const goToEditar = (navigate) => {navigate("/editar")};
 export const goToFeed = (navigate) => {navigate("/feed")};
 export const goToMeuCarrinho = (navigate) => {navigate("/meucarrinho")};
 export const goToMeuPerfil = (navigate) => {navigate("/meuperfil")};
-export const goToResultado = (navigate) => {navigate("/resultado")};
-
+export const goToResultadoPage = (navigator, id) => navigator (`/resultado/${id}`)
 
 
