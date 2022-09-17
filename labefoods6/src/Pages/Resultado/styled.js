@@ -17,7 +17,7 @@ export const CardItens=styled.div`
     max-height: 112px;
     margin: 7px 0 0;
     border-radius: 8px;
-    border: solid 1px #b8b8b8;
+    border: solid 1px var(--greyish);
     margin: 5px 20px;
     img{
         width: 97px;
@@ -41,7 +41,7 @@ export const InformacaoProduto=styled.div`
         font-style: normal;
         line-height: normal;
         letter-spacing: -0.39px;
-        color: #e86e5a;
+        color: var(--dark-peach)    
     }
 
     span{
@@ -56,7 +56,7 @@ export const InformacaoProduto=styled.div`
         font-style: normal;
         line-height: normal;
         letter-spacing: -0.34px;
-        color: #b8b8b8;
+        color: var(--greyish);
     }
 
 `
@@ -76,7 +76,7 @@ export const Preco=styled.div`
         font-style: normal;
         line-height: normal;
         letter-spacing: -0.39px;
-        color: #000;
+        color: var(--black);
     }
 
     button{
@@ -86,12 +86,12 @@ export const Preco=styled.div`
         padding: 8px 20.5px 9px 21.5px;
         border-top-left-radius: 8px;
         border-bottom-right-radius: 8px;
-        border: solid 1px #000;
+        border: solid 1px var(--black);
         font-family: 'Roboto', sans-serif;
         font-size: 12px;
         letter-spacing: -0.29px;
         text-align: center;
-        color: #000;
+        color: var(--black);
         cursor: pointer;
 
 
