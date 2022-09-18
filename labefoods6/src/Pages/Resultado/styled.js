@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-export const DivFundoResultado=styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: start;
-    width: 100vw;
-    height: 80vh;
-    margin: auto;
-`
-
 export const CardItens=styled.div`
     display: flex;
     max-width: 328px;
@@ -93,8 +82,97 @@ export const Preco=styled.div`
         text-align: center;
         color: var(--black);
         cursor: pointer;
+    }
+`
 
+export const DivFundoResultado=styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 100vw;
+    min-height: 100vh;
+    margin: auto;
 
+    h6{
+        width: 328px;
+        height: 18px;
+        border-bottom: solid 1px #000;
+        font-family: 'Roboto', sans-serif;
+        margin: 16px 16px 8px;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+        color: #000;
+        padding-bottom: 8px;
+    }
+`
+
+export const DivCarregando=styled.div`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const CardRestaurante=styled.div`
+    display: flex;
+    flex-direction: column;
+    img{
+        width: 328px;
+        height: 120px;
+        margin: 17px 16px 12px;
+        object-fit: contain;
+        border: 1px solid #b8b8b8;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    p{
+        color: var(--dark-peach);
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+        width: 328px;
+        height: 18px;
+        margin: 12px 16px 8px;
+    }
+
+    span{
+        color: #b8b8b8;
+        height: 18px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+    }
+
+    .categoria{
+        margin: 8px 8px 8px 16px;
+    }
+
+    .tempo{
+        margin: 8px 8px 10px 16px;
+    }
+
+    .delivery{
+       margin: 8px 128px 10px 8px;
+    }
+
+    .endereco{
+        margin: 10px 16px 16px;
 
     }
 
