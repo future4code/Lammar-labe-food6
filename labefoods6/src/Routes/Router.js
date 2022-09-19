@@ -19,7 +19,7 @@ const Router =()=>{
                 <Route path='/login'  element={<LoginPage />}/>
                 <Route path='/signup' element={<SignupPage />}/>
                 <Route path='/buscar' element={<BuscarPage />}/>
-                <Route path='/cadastar' element={<CadastroPage />}/>
+                <Route path='/cadastrar' element={<CadastroPage />}/>
                 <Route path='/editar' element={<EditarPage />}/>
                 <Route path='/feed' element={<FeedPage />}/>
                 <Route path='/meucarrinho' element={<MeuCarrinhoPage />}/>
