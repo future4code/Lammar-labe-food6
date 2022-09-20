@@ -1,9 +1,15 @@
+import { GlobalState } from "./Global/GlobalState";
+import { GlobalStyle } from "./Pages/GlobalStyle";
 import Router from "./Routes/Router";
 
 function App() {
   return (
     <>
-      <Router />
+      <GlobalState>
+        <GlobalStyle />
+        <Router />
+      </GlobalState>
+
     </>
   );
 }

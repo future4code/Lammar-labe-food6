@@ -19,12 +19,12 @@ const Router =()=>{
                 <Route path='/login'  element={<LoginPage />}/>
                 <Route path='/signup' element={<SignupPage />}/>
                 <Route path='/buscar' element={<BuscarPage />}/>
-                <Route path='/cadastar' element={<CadastroPage />}/>
+                <Route path='/cadastrar' element={<CadastroPage />}/>
                 <Route path='/editar' element={<EditarPage />}/>
                 <Route path='/feed' element={<FeedPage />}/>
-                <Route path='/meucarrinho' element={<MeuCarrinhoPage />}/>
-                <Route path='/meuperfil' element={<MeuPerfilPage />}/>
-                <Route path='/resultado' element={<ResultadoPage />}/>
+                <Route path='/meu_carrinho' element={<MeuCarrinhoPage />}/>
+                <Route path='/meu_perfil' element={<MeuPerfilPage />}/>
+                <Route path='/resultado/:id' element={<ResultadoPage />}/>
             </Routes>
         </BrowserRouter>
     )
