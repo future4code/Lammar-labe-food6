@@ -112,6 +112,9 @@ export const ResultadoPage=()=>{
         )
     })
 
+    console.log(addProduto)
+
+
     const acompanhamentos=detalhesRestaurante.filter((item, index)=>{
         if (item.category === "Acompanhamento"){
             return(
