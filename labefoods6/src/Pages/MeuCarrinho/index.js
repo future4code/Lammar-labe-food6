@@ -1,26 +1,57 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { BotaoLaranja } from "../../Components/Botoes/Styled.js"
+import { CardItens, InformacaoProduto, Preco } from "../../Components/Cards/Styled"
+import { FooterComponents } from "../../Components/Footer/Footer.js"
+import { DivFundoPaginaFooter } from "../../Components/Footer/Styled"
 import { GlobalStateContext } from "../../Global/GlobalStateContext"
+import { TextoCarrinho } from "./styled"
 
 export const MeuCarrinhoPage=()=>{
     const navigate=useNavigate()
-    const {addProduto, setAddProduto, isLoading, setIsLoading}=useContext(GlobalStateContext)
+    const {addProduto, setAddProduto, }=useContext(GlobalStateContext)
 
+    useEffect(()=>{
+        
+    })
     const carrinho = addProduto.map((item, index)=>{
+        const deletarProdutos = () =>{
+            const novoCarrinho = [...carrinho]
+            const deletar = novoCarrinho.findIndex((produto)=>{
+                return produto === item
+            })
+            novoCarrinho.splice(deletar, 1)
+            setAddProduto(novoCarrinho)
+        }
+
         return(
-            <div key={index}>
-                <p>{item.name}</p>
-                <p>{item.price}</p>
-            </div>
+            <CardItens key={index}>
+                <img src={item.photoUrl} alt={item.name}/>
+                <InformacaoProduto>
+                    <p>{item.name}</p>
+                    <span>{item.description}</span>
+                    <Preco>
+                        <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
+                        <button>Remover</button>
+                    </Preco>  
+                </InformacaoProduto>
+            </CardItens>
         )
     })
-
-    console.log(addProduto)
+    console.log(carrinho)
     return(
-        <>
-            <h1>Meu Carrinho</h1>
+        <DivFundoPaginaFooter>
+            {carrinho.length > 0 ?
+            <DivFundoPaginaFooter>
                 {carrinho}
-        </>
+            </DivFundoPaginaFooter>
+            :
+            <TextoCarrinho>Carrinho vazio</TextoCarrinho>
+            }
+            <BotaoLaranja>Confirmar</BotaoLaranja>
+            <FooterComponents />
+        </DivFundoPaginaFooter>
     )
 }
+
 
