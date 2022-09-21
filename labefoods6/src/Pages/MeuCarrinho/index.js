@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { BotaoLaranja } from "../../Components/Botoes/Styled.js"
 import { CardItens, InformacaoProduto, Preco } from "../../Components/Cards/Styled"
@@ -11,7 +11,19 @@ export const MeuCarrinhoPage=()=>{
     const navigate=useNavigate()
     const {addProduto, setAddProduto, }=useContext(GlobalStateContext)
 
+    useEffect(()=>{
+        
+    })
     const carrinho = addProduto.map((item, index)=>{
+        const deletarProdutos = () =>{
+            const novoCarrinho = [...carrinho]
+            const deletar = novoCarrinho.findIndex((produto)=>{
+                return produto === item
+            })
+            novoCarrinho.splice(deletar, 1)
+            setAddProduto(novoCarrinho)
+        }
+
         return(
             <CardItens key={index}>
                 <img src={item.photoUrl} alt={item.name}/>
@@ -26,6 +38,7 @@ export const MeuCarrinhoPage=()=>{
             </CardItens>
         )
     })
+    console.log(carrinho)
     return(
         <DivFundoPaginaFooter>
             {carrinho.length > 0 ?
@@ -37,7 +50,8 @@ export const MeuCarrinhoPage=()=>{
             }
             <BotaoLaranja>Confirmar</BotaoLaranja>
             <FooterComponents />
-    </DivFundoPaginaFooter>
+        </DivFundoPaginaFooter>
     )
 }
+
 

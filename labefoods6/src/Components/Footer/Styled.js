@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 export const Footer=styled.footer`
     width: 360px;
-    height: 10vh;
+    height: 5vh;
     display: flex;
+    position: fixed;
+    bottom: 0;
 
     button{
-        background-color: transparent;
+        background-color: white;
         color: #b8b8b8;
         border: none;
         cursor: pointer;
@@ -20,11 +22,10 @@ export const Footer=styled.footer`
 export const DivFundoPaginaFooter=styled.div`
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     max-width: 100vw;
-    min-height: 90vh;
+    max-height: 99vh;
     margin: auto;
 
     h6{
