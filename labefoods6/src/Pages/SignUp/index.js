@@ -42,7 +42,7 @@ export const SignupPage=()=>{
     const userRegister = (event) => {
         event.preventDefault()
 
-        axios.post(`${BASE_URL}/${appName}/signup`, form)
+        axios.post(`${BASE_URL}/signup`, form)
         .then((res) => {
             alert("ok")
             console.log(res.data)

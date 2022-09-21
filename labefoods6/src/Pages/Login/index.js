@@ -29,7 +29,7 @@ const LoginPage =()=>{
     const onSubmit = (e) => {
         e.preventDefault();
         axios
-          .post(`${BASE_URL}/${appName}/login`, form)
+          .post(`${BASE_URL}/login`, form)
           .then((response) => {
             console.log(response.data);
             onClick();
