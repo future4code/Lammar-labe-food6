@@ -1,15 +1,17 @@
 import axios from "axios"
 import React, { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { GlobalStateContext } from "../../Global/GlobalStateContext"
 import { CardItens, CardRestaurante, DivCarregando, DivFundoResultado, InformacaoProduto, Preco } from "./styled"
 import { CircularProgress } from "@mui/material";
 import Stack from '@mui/material/Stack';
 import { BASE_URL } from "../../Constants"
+import { goToMeuCarrinho } from "../../Routes/Coordinator"
 
 
 export const ResultadoPage=()=>{
 
+    const navigate=useNavigate();
     const [detalhesRestaurante, setDetalhesRestaurante]=useState([])
     const [infoRestaurante, setInfoRestaurante]=useState()
     const {addProduto, setAddProduto, isLoading, setIsLoading}=useContext(GlobalStateContext)
@@ -29,6 +31,8 @@ export const ResultadoPage=()=>{
             setIsLoading(false)
             setDetalhesRestaurante(response.data.restaurant.products)
             setInfoRestaurante(response.data.restaurant)
+        }).catch((error)=>{
+            navigate("/login")
         })
     }
 
@@ -185,6 +189,7 @@ export const ResultadoPage=()=>{
             :
             <>
                 <CardRestaurante>
+                    <button onClick={()=>goToMeuCarrinho(navigate)}>Carrinho</button>
                     <img src={infoRestaurante?.logoUrl}  alt={infoRestaurante?.name}/>
                     <p>{infoRestaurante?.name}</p>
                     <span className="categoria">{infoRestaurante?.category}</span>
@@ -222,8 +227,7 @@ export const ResultadoPage=()=>{
                 undefined
                 }
             </>
-}
-
+            }
         </DivFundoResultado>
     )
 
