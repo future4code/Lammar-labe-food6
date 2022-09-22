@@ -1,10 +1,15 @@
 import React from "react"
+import { FooterComponents } from "../../Components/Footer/Footer.js"
+import { NavbarComponents } from "../../Components/Navbar/Navbar.js"
+import { MeuPerfilContainer } from '../MeuPerfil/styled'
 
 export const MeuPerfilPage=()=>{
     return(
-        <>
-            <h1>Meu Perfil </h1>
-        </>
+        <MeuPerfilContainer>
+            <NavbarComponents />
+                <div>Meu Perfil DASH</div>
+            <FooterComponents />
+        </MeuPerfilContainer>
     )
 }
 
