@@ -1,21 +1,26 @@
 import styled from "styled-components";
 
 export const Footer=styled.footer`
-    width: 360px;
+    width: 100vw;
     height: 5vh;
     display: flex;
     position: fixed;
+    justify-content: center;
+    align-items: center;
     bottom: 0;
+    border-top: 1px solid lightgray;
 
     button{
         background-color: white;
         color: #b8b8b8;
         border: none;
+        height: 90%;
         cursor: pointer;
         padding: 11px 46px 11px 47px;
         :hover{
             color: var(--dark-peach);
         }
+
     }
 `
 
