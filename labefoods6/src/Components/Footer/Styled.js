@@ -48,4 +48,5 @@ export const DivFundoPaginaFooter=styled.div`
         color: #000;
         padding-bottom: 8px;
     }
+
 `
