@@ -11,18 +11,15 @@ export const MeuCarrinhoPage=()=>{
     const navigate=useNavigate()
     const {addProduto, setAddProduto, }=useContext(GlobalStateContext)
 
-    useEffect(()=>{
-        
-    })
+    const deletarProdutos = (produto) =>{
+        const novoCarrinho = [...addProduto]
+        const deletar = novoCarrinho.findIndex((p)=> p === produto)
+        novoCarrinho.splice(deletar, 1)
+        setAddProduto(novoCarrinho)
+    }
+
     const carrinho = addProduto.map((item, index)=>{
-        const deletarProdutos = () =>{
-            const novoCarrinho = [...carrinho]
-            const deletar = novoCarrinho.findIndex((produto)=>{
-                return produto === item
-            })
-            novoCarrinho.splice(deletar, 1)
-            setAddProduto(novoCarrinho)
-        }
+
 
         return(
             <CardItens key={index}>
@@ -32,7 +29,7 @@ export const MeuCarrinhoPage=()=>{
                     <span>{item.description}</span>
                     <Preco>
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                        <button>Remover</button>
+                        <button onClick={()=>deletarProdutos(item)}>Remover</button>
                     </Preco>  
                 </InformacaoProduto>
             </CardItens>
