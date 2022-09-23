@@ -25,7 +25,7 @@ export const MeuCarrinhoPage=()=>{
                 <InformacaoProduto>
                     <p className="quantidade">{item.quantity}</p>
                     <p>{item.name}</p>
-                    <span>{item.description}</span>
+                    <p className="descricao">{item.description}</p>
                     <Preco>
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
                         <button onClick={()=>deletarProdutos(item)}>Remover</button>

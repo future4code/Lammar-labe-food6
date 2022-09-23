@@ -20,9 +20,9 @@ export const InformacaoProduto=styled.div`
     flex-direction: column;
 
     p{
-        width: 166px;
+        max-width: 166px;
+        margin-left: 6px;
         height: 18px;
-        margin: 18px 49px 0 8px;
         font-family: 'Roboto', sans-serif;
         font-size: 16px;
         font-weight: normal;
@@ -33,7 +33,7 @@ export const InformacaoProduto=styled.div`
         color: var(--dark-peach)    
     }
 
-    span{
+    .descricao{
         font-family: 'Roboto', sans-serif;
         width: 198px;
         height: 30px;
@@ -50,9 +50,8 @@ export const InformacaoProduto=styled.div`
 
     .quantidade{
         width: 33px;
-        height: 33px;
-        margin: 0 0 9px 197px;
-        padding: 7px 0;
+        max-height: 33px;
+        margin-left: 197px;
         border-top-right-radius: 8px;
         border-bottom-left-radius: 8px;
         border: solid 1px var(--dark-peach);
@@ -61,6 +60,8 @@ export const InformacaoProduto=styled.div`
         letter-spacing: -0.39px;
         text-align: center;
         color: var(--dark-peach);
+        position: fixed;
+        padding: 5px 0;
     }
 `
 
@@ -85,7 +86,7 @@ export const Preco=styled.div`
     button{
         width: 90px;
         height: 31px;
-        margin: 9px 0 0 17px;
+        margin: 1px 0 0 10px;
         padding: 8px 20.5px 9px 21.5px;
         border-top-left-radius: 8px;
         border-bottom-right-radius: 8px;
