@@ -23,6 +23,7 @@ export const MeuCarrinhoPage=()=>{
             <CardItens key={index}>
                 <img src={item.photoUrl} alt={item.name}/>
                 <InformacaoProduto>
+                    <p className="quantidade">{item.quantity}</p>
                     <p>{item.name}</p>
                     <span>{item.description}</span>
                     <Preco>

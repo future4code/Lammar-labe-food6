@@ -120,6 +120,7 @@ export const ResultadoPage=()=>{
                 <CardItens>
                     <img src={item.photoUrl} alt={item.name}/>
                     <InformacaoProduto>
+                        <p>Quantidade:{item.quantity}</p>
                         <p>{item.name}</p>
                         <span>{item.description}</span>
                         <Preco>

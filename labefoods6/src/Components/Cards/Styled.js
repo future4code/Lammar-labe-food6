@@ -47,6 +47,21 @@ export const InformacaoProduto=styled.div`
         letter-spacing: -0.34px;
         color: #b8b8b8;
     }
+
+    .quantidade{
+        width: 33px;
+        height: 33px;
+        margin: 0 0 9px 197px;
+        padding: 7px 0;
+        border-top-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border: solid 1px var(--dark-peach);
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+        text-align: center;
+        color: var(--dark-peach);
+    }
 `
 
 export const Preco=styled.div`

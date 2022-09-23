@@ -16,3 +16,4 @@ export const TextoCarrinho=styled.p`
     margin: 8px 0 33px;
     padding: 12px 32px;
 `
+
