@@ -16,6 +16,23 @@ export const ResultadoPage=()=>{
     const [infoRestaurante, setInfoRestaurante]=useState()
     const {addProduto, setAddProduto, isLoading, setIsLoading}=useContext(GlobalStateContext)
 
+    const adicionandoProdutoNoCarrinho = item =>{
+        let procurarProduto= addProduto.find(elemento => elemento.id === item.id)
+
+        if(procurarProduto){
+            procurarProduto.quantity +=1
+            setAddProduto(addProduto)
+            localStorage.setItem("carrinho", JSON.stringify(addProduto))
+        }else{
+            item ={
+                ...item,
+                quantity: 1
+            }
+            const novoCarrinho = [...addProduto, item]
+            setAddProduto(novoCarrinho)
+            localStorage.setItem("carrinho", JSON.stringify(novoCarrinho))
+        }
+    }
     const token = localStorage.getItem("token")
     const headers={
         headers:{
@@ -40,7 +57,6 @@ export const ResultadoPage=()=>{
         obterRestaurantes()
     }, [])
 
-
     detalhesRestaurante.map((item, index)=>{
         return (
             <>
@@ -51,7 +67,7 @@ export const ResultadoPage=()=>{
                         <span>{item.description}</span>
                         <Preco>
                             <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                            <button onClick={()=> setAddProduto([...addProduto, item])}>Adicionar</button>
+                            <button onClick={()=> adicionandoProdutoNoCarrinho(item)}>Adicionar</button>
                         </Preco>
                     </InformacaoProduto>
                 </CardItens>
@@ -80,7 +96,7 @@ export const ResultadoPage=()=>{
                         <span>{item.description}</span>
                         <Preco>
                             <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                            <button onClick={()=> setAddProduto([...addProduto, item])}>Adicionar</button>
+                            <button onClick={()=> adicionandoProdutoNoCarrinho(item)}>Adicionar</button>
                         </Preco>
                     </InformacaoProduto>
                 </CardItens>
@@ -108,7 +124,7 @@ export const ResultadoPage=()=>{
                         <span>{item.description}</span>
                         <Preco>
                             <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                            <button onClick={()=> setAddProduto([...addProduto, item])}>Adicionar</button>
+                            <button onClick={()=> adicionandoProdutoNoCarrinho(item)}>Adicionar</button>
                         </Preco>
                     </InformacaoProduto>
                 </CardItens>
@@ -139,7 +155,7 @@ export const ResultadoPage=()=>{
                         <span>{item.description}</span>
                     <Preco>
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                        <button onClick={()=> setAddProduto([...addProduto, item])}>Adicionar</button>
+                            <button onClick={()=> adicionandoProdutoNoCarrinho(item)}>Adicionar</button>
                     </Preco>
                     </InformacaoProduto>
                 </CardItens>
@@ -167,7 +183,7 @@ export const ResultadoPage=()=>{
                         <span>{item.description}</span>
                     <Preco>
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                        <button onClick={()=> setAddProduto([...addProduto, item])}>Adicionar</button>
+                            <button onClick={()=> adicionandoProdutoNoCarrinho(item)}>Adicionar</button>
                     </Preco>
                     </InformacaoProduto>
                 </CardItens>

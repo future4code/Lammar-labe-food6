@@ -19,8 +19,6 @@ export const MeuCarrinhoPage=()=>{
     }
 
     const carrinho = addProduto.map((item, index)=>{
-
-
         return(
             <CardItens key={index}>
                 <img src={item.photoUrl} alt={item.name}/>
