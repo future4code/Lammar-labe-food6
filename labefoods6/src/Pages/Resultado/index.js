@@ -12,9 +12,8 @@ import { goToMeuCarrinho } from "../../Routes/Coordinator"
 export const ResultadoPage=()=>{
 
     const navigate=useNavigate();
-    const [detalhesRestaurante, setDetalhesRestaurante]=useState([])
-    const [infoRestaurante, setInfoRestaurante]=useState()
-    const {addProduto, setAddProduto, isLoading, setIsLoading}=useContext(GlobalStateContext)
+
+    const {addProduto, setAddProduto, isLoading, setIsLoading, detalhesRestaurante, setDetalhesRestaurante, infoRestaurante, setInfoRestaurante}=useContext(GlobalStateContext)
 
     const adicionandoProdutoNoCarrinho = item =>{
         let procurarProduto= addProduto.find(elemento => elemento.id === item.id)
@@ -48,6 +47,8 @@ export const ResultadoPage=()=>{
             setIsLoading(false)
             setDetalhesRestaurante(response.data.restaurant.products)
             setInfoRestaurante(response.data.restaurant)
+            localStorage.setItem("restaurante", JSON.stringify(response.data.restaurant)
+            )
         }).catch((error)=>{
             navigate("/login")
         })

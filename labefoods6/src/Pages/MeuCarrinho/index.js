@@ -5,11 +5,12 @@ import { CardItens, InformacaoProduto, Preco } from "../../Components/Cards/Styl
 import { FooterComponents } from "../../Components/Footer/Footer.js"
 import { DivFundoPaginaFooter } from "../../Components/Footer/Styled"
 import { GlobalStateContext } from "../../Global/GlobalStateContext"
-import { DivValorTotal, TextoCarrinho } from "./styled"
+import { DadosRestaurante, DivValorTotal, Frete, TextoCarrinho } from "./styled"
 
 export const MeuCarrinhoPage=(props)=>{
+
     const navigate=useNavigate()
-    const {addProduto, setAddProduto, }=useContext(GlobalStateContext)
+    const {addProduto, setAddProduto, infoRestaurante }=useContext(GlobalStateContext)
     const [valorTotal, setValorTotal]=useState(0)
 
     const deletarProdutos = (produto) =>{
@@ -36,10 +37,13 @@ export const MeuCarrinhoPage=(props)=>{
             </CardItens>
         )
     })
+
+    let valorFrete = Number(infoRestaurante.shipping)
+
     useEffect(()=>{
         let valorFinal = 0
         addProduto.forEach((produto)=>{
-            valorFinal += (produto.price * produto.quantity) 
+            valorFinal += (produto.price * produto.quantity) + valorFrete
         }, [addProduto])
         setValorTotal(valorFinal)
         localStorage.setItem("carrinho", JSON.stringify(addProduto))
@@ -47,6 +51,11 @@ export const MeuCarrinhoPage=(props)=>{
 
     return(
         <DivFundoPaginaFooter>
+            <DadosRestaurante>
+                <p className="estabelecimento">{infoRestaurante?.name}</p>
+                <p className="endereco">{infoRestaurante?.address}</p>
+                <p className="entrega">{infoRestaurante?.deliveryTime} min</p>
+            </DadosRestaurante>
             {carrinho.length > 0 ?
             <DivFundoPaginaFooter>
                 {carrinho}
@@ -54,10 +63,14 @@ export const MeuCarrinhoPage=(props)=>{
             :
             <TextoCarrinho>Carrinho vazio</TextoCarrinho>
             }
+            <Frete>
+                <p className="valorFrete">Frete: {infoRestaurante.shipping.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
+            </Frete>
             <DivValorTotal>
                 <p className="subtotal">SUBTOTAL:</p> 
                 <p className="valor"> {valorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
             </DivValorTotal>
+            <h6>Forma de pagamento</h6>
             <BotaoLaranja>Confirmar</BotaoLaranja>
             <FooterComponents />
         </DivFundoPaginaFooter>
