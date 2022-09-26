@@ -16,7 +16,12 @@ export const MeuCarrinhoPage=(props)=>{
     const deletarProdutos = (produto) =>{
         const novoCarrinho = [...addProduto]
         const deletar = novoCarrinho.findIndex((p)=> p === produto)
-        novoCarrinho.splice(deletar, 1)
+
+        if(novoCarrinho[deletar].quantity===1){
+            novoCarrinho.splice(deletar, 1)
+        }else{
+            novoCarrinho[deletar].quantity--
+        }
         setAddProduto(novoCarrinho)
 
     }
