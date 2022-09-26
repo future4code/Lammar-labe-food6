@@ -5,7 +5,7 @@ import { CardItens, InformacaoProduto, Preco } from "../../Components/Cards/Styl
 import { FooterComponents } from "../../Components/Footer/Footer.js"
 import { DivFundoPaginaFooter } from "../../Components/Footer/Styled"
 import { GlobalStateContext } from "../../Global/GlobalStateContext"
-import { DadosRestaurante, DivValorTotal, Frete, TextoCarrinho } from "./styled"
+import { DadosRestaurante, DivValorTotal, Frete, Pagamento, PagamentoStyled, TextoCarrinho } from "./styled"
 
 export const MeuCarrinhoPage=(props)=>{
 
@@ -16,7 +16,12 @@ export const MeuCarrinhoPage=(props)=>{
     const deletarProdutos = (produto) =>{
         const novoCarrinho = [...addProduto]
         const deletar = novoCarrinho.findIndex((p)=> p === produto)
-        novoCarrinho.splice(deletar, 1)
+
+        if(novoCarrinho[deletar].quantity===1){
+            novoCarrinho.splice(deletar, 1)
+        }else{
+            novoCarrinho[deletar].quantity--
+        }
         setAddProduto(novoCarrinho)
 
     }
@@ -49,13 +54,20 @@ export const MeuCarrinhoPage=(props)=>{
         localStorage.setItem("carrinho", JSON.stringify(addProduto))
     })
 
+
+
     return(
         <DivFundoPaginaFooter>
+            {carrinho.length > 0 ? 
             <DadosRestaurante>
+                <img src={infoRestaurante?.logoUrl} alt={infoRestaurante?.name} />
                 <p className="estabelecimento">{infoRestaurante?.name}</p>
                 <p className="endereco">{infoRestaurante?.address}</p>
                 <p className="entrega">{infoRestaurante?.deliveryTime} min</p>
             </DadosRestaurante>
+            :
+            undefined
+            }
             {carrinho.length > 0 ?
             <DivFundoPaginaFooter>
                 {carrinho}
@@ -63,14 +75,28 @@ export const MeuCarrinhoPage=(props)=>{
             :
             <TextoCarrinho>Carrinho vazio</TextoCarrinho>
             }
+            {carrinho.length > 0 ? 
             <Frete>
                 <p className="valorFrete">Frete: {infoRestaurante.shipping.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
             </Frete>
+                :
+            <Frete>
+                <p className="valorFrete">Frete: R$ 0,00</p>
+            </Frete>
+            }
             <DivValorTotal>
                 <p className="subtotal">SUBTOTAL:</p> 
                 <p className="valor"> {valorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
             </DivValorTotal>
             <h6>Forma de pagamento</h6>
+            <PagamentoStyled>
+                <input type="radio"  name="fav_language"/> 
+                <label>Dinheiro</label>
+            </PagamentoStyled>
+            <PagamentoStyled>
+                <input type="radio" name="fav_language"/> 
+                <label>Cartão de Crédito</label>
+            </PagamentoStyled>
             <BotaoLaranja>Confirmar</BotaoLaranja>
             <FooterComponents />
         </DivFundoPaginaFooter>

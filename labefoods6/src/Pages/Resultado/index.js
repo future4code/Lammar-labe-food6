@@ -64,6 +64,7 @@ export const ResultadoPage=()=>{
                 <CardItens key={index}>
                     <img src={item.photoUrl} alt={item.name}/>
                     <InformacaoProduto>
+                        <p>{item.quantity}</p>
                         <p>{item.name}</p>
                         <span>{item.description}</span>
                         <Preco>
@@ -93,6 +94,7 @@ export const ResultadoPage=()=>{
                 <CardItens>
                     <img src={item.photoUrl} alt={item.name}/>
                     <InformacaoProduto>
+                        <p>{item.quantity}</p>
                         <p>{item.name}</p>
                         <span>{item.description}</span>
                         <Preco>
