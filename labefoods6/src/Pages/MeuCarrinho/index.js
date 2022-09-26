@@ -5,7 +5,7 @@ import { CardItens, InformacaoProduto, Preco } from "../../Components/Cards/Styl
 import { FooterComponents } from "../../Components/Footer/Footer.js"
 import { DivFundoPaginaFooter } from "../../Components/Footer/Styled"
 import { GlobalStateContext } from "../../Global/GlobalStateContext"
-import { DadosRestaurante, DivValorTotal, Frete, TextoCarrinho } from "./styled"
+import { DadosRestaurante, DivValorTotal, Frete, Pagamento, PagamentoStyled, TextoCarrinho } from "./styled"
 
 export const MeuCarrinhoPage=(props)=>{
 
@@ -54,9 +54,12 @@ export const MeuCarrinhoPage=(props)=>{
         localStorage.setItem("carrinho", JSON.stringify(addProduto))
     })
 
+
+
     return(
         <DivFundoPaginaFooter>
             <DadosRestaurante>
+                <img src={infoRestaurante?.logoUrl} alt={infoRestaurante?.name} />
                 <p className="estabelecimento">{infoRestaurante?.name}</p>
                 <p className="endereco">{infoRestaurante?.address}</p>
                 <p className="entrega">{infoRestaurante?.deliveryTime} min</p>
@@ -76,6 +79,14 @@ export const MeuCarrinhoPage=(props)=>{
                 <p className="valor"> {valorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
             </DivValorTotal>
             <h6>Forma de pagamento</h6>
+            <PagamentoStyled>
+                <input type="radio"  name="fav_language"/> 
+                <label>Dinheiro</label>
+            </PagamentoStyled>
+            <PagamentoStyled>
+                <input type="radio" name="fav_language"/> 
+                <label>Cartão de Crédito</label>
+            </PagamentoStyled>
             <BotaoLaranja>Confirmar</BotaoLaranja>
             <FooterComponents />
         </DivFundoPaginaFooter>
