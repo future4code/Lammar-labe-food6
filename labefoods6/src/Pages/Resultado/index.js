@@ -195,6 +195,9 @@ export const ResultadoPage=()=>{
         )
     })
 
+    const onClickCarrinho=(id) =>{
+        goToMeuCarrinho(navigate, id)
+    }
 
     return(
         <DivFundoResultado>
@@ -209,7 +212,7 @@ export const ResultadoPage=()=>{
             :
             <>
                 <CardRestaurante>
-                    <button onClick={()=>goToMeuCarrinho(navigate)}>Carrinho</button>
+                    <button onClick={()=>onClickCarrinho(infoRestaurante?.id)}>Carrinho</button>
                     <img src={infoRestaurante?.logoUrl}  alt={infoRestaurante?.name}/>
                     <p>{infoRestaurante?.name}</p>
                     <span className="categoria">{infoRestaurante?.category}</span>
