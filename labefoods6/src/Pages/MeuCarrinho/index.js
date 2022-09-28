@@ -1,17 +1,26 @@
+import axios from "axios"
 import React, { useContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { BotaoLaranja } from "../../Components/Botoes/Styled.js"
 import { CardItens, InformacaoProduto, Preco } from "../../Components/Cards/Styled"
 import { FooterComponents } from "../../Components/Footer/Footer.js"
 import { DivFundoPaginaFooter } from "../../Components/Footer/Styled"
+import { BASE_URL } from "../../Constants/index.js"
 import { GlobalStateContext } from "../../Global/GlobalStateContext"
-import { DadosRestaurante, DivValorTotal, Frete, Pagamento, PagamentoStyled, TextoCarrinho } from "./styled"
+import { DadosRestaurante, DivValorTotal, Frete, PagamentoStyled, TextoCarrinho } from "./styled"
 
 export const MeuCarrinhoPage=(props)=>{
 
     const navigate=useNavigate()
     const {addProduto, setAddProduto, infoRestaurante }=useContext(GlobalStateContext)
     const [valorTotal, setValorTotal]=useState(0)
+    const [creditCard, setCreditCard] = useState(true)
+    const [money, setMoney] = useState(false)
+
+    const handlePaymentMethod = () => {
+        setCreditCard(!creditCard)
+        setMoney(!money)
+    }
 
     const deletarProdutos = (produto) =>{
         const novoCarrinho = [...addProduto]
@@ -54,7 +63,35 @@ export const MeuCarrinhoPage=(props)=>{
         localStorage.setItem("carrinho", JSON.stringify(addProduto))
     })
 
+    const param = useParams()
 
+    const token = localStorage.getItem("token")
+    const headers={
+        headers:{
+            auth: token
+        }
+    }
+
+    const placeOrder=()=>{
+        const arr = addProduto.map(({quantity, id}) => {
+            return {
+                quantity,
+                id
+            }
+        })
+
+        const body = {
+            products: arr,
+            paymentMethod: money ? "money" : "creditcard"
+        }
+
+        axios.post(`${BASE_URL}/restaurants/${param.id}/order`, body, headers)
+        .then((response)=>{
+            alert("Pedido Criado com sucesso")
+        }).catch((error)=>{
+            alert ("Pedido não realizado")
+        })
+    }
 
     return(
         <DivFundoPaginaFooter>
@@ -90,14 +127,18 @@ export const MeuCarrinhoPage=(props)=>{
             </DivValorTotal>
             <h6>Forma de pagamento</h6>
             <PagamentoStyled>
-                <input type="radio"  name="fav_language"/> 
-                <label>Dinheiro</label>
+                <label>
+                    <input type="radio" checked={money} onChange={handlePaymentMethod} name="fav_language"/> 
+                    Dinheiro
+                </label>
             </PagamentoStyled>
             <PagamentoStyled>
-                <input type="radio" name="fav_language"/> 
-                <label>Cartão de Crédito</label>
+                <label>
+                    <input type="radio" checked={creditCard} onChange={handlePaymentMethod} name="fav_language"/> 
+                    Cartão de crédito
+                </label>
             </PagamentoStyled>
-            <BotaoLaranja>Confirmar</BotaoLaranja>
+            <BotaoLaranja onClick={placeOrder}>Confirmar</BotaoLaranja>
             <FooterComponents />
         </DivFundoPaginaFooter>
     )
