@@ -1,14 +1,13 @@
 import React, { useState, useEffect} from "react"
 import { useNavigate } from 'react-router-dom'
 import { useProtectPage } from "../../Hook/useProtectPage";
-import { useForm } from '../../Hook/useForm'
 import { BASE_URL } from "../../Constants/index.js";
-import { Link } from 'react-router-dom';
-import { FeedCard } from "./styled";
 import axios from 'axios'
 import {
     goToResultadoPage
 } from '../../Routes/Coordinator'
+
+
 export const FeedPage=()=>{
     useProtectPage()
     const navigate = useNavigate()
@@ -20,9 +19,7 @@ export const FeedPage=()=>{
       }
 
       const [feed, setFeed] = useState([])
-      const [categoria, setCategoria] = useState('')
-
-    
+      
       useEffect(() => {
         axios.get(`${BASE_URL}/restaurants`, {
           headers: {
@@ -41,41 +38,41 @@ export const FeedPage=()=>{
         goToResultadoPage(id)
     }
 
+    const [searchTerm, setSearchTerm] = useState('')
     return(
-
+        
         <div>
-            {feed.map((feed, i) => 
-            <FeedCard onClick={() => onClickCard() }>
-                <img src={feed.image}></img>
-                <h3>{feed.name}</h3>
-                <span>{feed.category}</span>
-                <div>
-                <span>{feed.deliveryTime} min.</span>
-                <p>Entrega: R$ {feed.shipping.toFixed(2)}</p>
-                </div>
-                <span>{feed.address}</span>
-            </FeedCard>
-            )}
-            
+            <input 
+                type="text"
+                placeholder="Restaurantes"
+                onChange={event => {
+                    setSearchTerm(event.target.value)
+                }}
+            />
+
+            {feed.filter((val) => {
+                if (searchTerm == ""){
+                    return val
+                } else if(val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return val
+                }
+            }).map((val, key) => {
+                return (
+                    <div>
+                        <div>
+                        <p>{val.name}</p>
+                            <img src={val.logoUrl} width="47" height="47" />
+                        </div>
+                       <p>Tempo de espera:  {val.deliveryTime} min.</p>
+                       <p>Frete: {val.shipping},00</p><br></br>
+                    </div>
+                )
+            })}
+
         </div>
 
         
-        // <>
-        //     <h1>Feed</h1>
-            
-        //     {feed.map((i) => {
-        //   return (<div key={i.id}
-            
-        //     onClick={() => navigate(`/feed/${i.id}`)}
-        //     storeName={i.name}
-        //     deliveryTime={i.deliveryTime}
-        //     fee={i.shipping}
-        //     img={i.logoUrl}
-          
-            
-        //   />)
-        // })}
-        // </>
     )
 }
+
 
