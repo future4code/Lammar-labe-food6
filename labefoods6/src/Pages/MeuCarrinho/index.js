@@ -5,9 +5,15 @@ import { BotaoLaranja } from "../../Components/Botoes/Styled.js"
 import { CardItens, InformacaoProduto, Preco } from "../../Components/Cards/Styled"
 import { FooterComponents } from "../../Components/Footer/Footer.js"
 import { DivFundoPaginaFooter } from "../../Components/Footer/Styled"
+import { HeaderStyled } from "../../Components/Header/Styled.js"
 import { BASE_URL } from "../../Constants/index.js"
 import { GlobalStateContext } from "../../Global/GlobalStateContext"
-import { DadosRestaurante, DivValorTotal, Frete, PagamentoStyled, TextoCarrinho } from "./styled"
+import { DadosRestaurante, DivQuantidadeStyled, DivValorTotal, Frete, MetodoDePagamentoStyled, PagamentoStyled, TextoCarrinho, TituloQuantidadeStyled } from "./styled"
+import {IoIosArrowBack} from 'react-icons/io'
+import { toast } from "react-toastify";
+import { CircularProgress } from "@mui/material";
+import Stack from '@mui/material/Stack';
+import { DivCarregando } from "../Resultado/styled.js"
 
 export const MeuCarrinhoPage=(props)=>{
 
@@ -40,8 +46,10 @@ export const MeuCarrinhoPage=(props)=>{
             <CardItens key={index}>
                 <img src={item.photoUrl} alt={item.name}/>
                 <InformacaoProduto>
-                    <p className="quantidade">{item.quantity}</p>
-                    <p>{item.name}</p>
+                    <TituloQuantidadeStyled>
+                        <p className="quantidadeAdicionada">{item.quantity}</p>
+                        <p className="nomeProduto">{item.name}</p>
+                    </TituloQuantidadeStyled>
                     <p className="descricao">{item.description}</p>
                     <Preco> 
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
@@ -57,11 +65,11 @@ export const MeuCarrinhoPage=(props)=>{
     useEffect(()=>{
         let valorFinal = 0
         addProduto.forEach((produto)=>{
-            valorFinal += (produto.price * produto.quantity) + valorFrete
+            valorFinal += (produto.price * produto.quantity) 
         }, [addProduto])
-        setValorTotal(valorFinal)
+        setValorTotal(valorFinal + valorFrete)
         localStorage.setItem("carrinho", JSON.stringify(addProduto))
-    })
+    },[addProduto])
 
     const param = useParams()
 
@@ -73,6 +81,7 @@ export const MeuCarrinhoPage=(props)=>{
     }
 
     const placeOrder=()=>{
+        
         const arr = addProduto.map(({quantity, id}) => {
             return {
                 quantity,
@@ -85,16 +94,54 @@ export const MeuCarrinhoPage=(props)=>{
             paymentMethod: money ? "money" : "creditcard"
         }
 
-        axios.post(`${BASE_URL}/restaurants/${param.id}/order`, body, headers)
-        .then((response)=>{
-            alert("Pedido Criado com sucesso")
-        }).catch((error)=>{
-            alert ("Pedido não realizado")
-        })
+        if(carrinho.length > 0){
+            axios.post(`${BASE_URL}/restaurants/${param.id}/order`, body, headers)
+            .then((response)=>{
+                toast.success('Pedido realizado com sucesso!', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                localStorage.removeItem("carrinho");
+                
+            }).catch((error)=>{
+                toast.error('Aguarde seu outro pedido ser finalizado.', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+                
+            })
+        }else{
+            toast.warn('Insira pelo menos 1 item no carrinho.', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });    }
+    }
+
+    const voltar=()=>{
+        navigate(-1)
     }
 
     return(
         <DivFundoPaginaFooter>
+            <HeaderStyled>
+                 <button onClick={voltar}> <IoIosArrowBack size="24px" /></button>
+                 <p>Meu carrinho</p>
+            </HeaderStyled>
             {carrinho.length > 0 ? 
             <DadosRestaurante>
                 <img src={infoRestaurante?.logoUrl} alt={infoRestaurante?.name} />
@@ -106,9 +153,9 @@ export const MeuCarrinhoPage=(props)=>{
             undefined
             }
             {carrinho.length > 0 ?
-            <DivFundoPaginaFooter>
+            <div>
                 {carrinho}
-            </DivFundoPaginaFooter>
+            </div>
             :
             <TextoCarrinho>Carrinho vazio</TextoCarrinho>
             }
@@ -125,19 +172,21 @@ export const MeuCarrinhoPage=(props)=>{
                 <p className="subtotal">SUBTOTAL:</p> 
                 <p className="valor"> {valorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
             </DivValorTotal>
-            <h6>Forma de pagamento</h6>
-            <PagamentoStyled>
-                <label>
-                    <input type="radio" checked={money} onChange={handlePaymentMethod} name="fav_language"/> 
-                    Dinheiro
-                </label>
-            </PagamentoStyled>
-            <PagamentoStyled>
-                <label>
-                    <input type="radio" checked={creditCard} onChange={handlePaymentMethod} name="fav_language"/> 
-                    Cartão de crédito
-                </label>
-            </PagamentoStyled>
+            <MetodoDePagamentoStyled>
+                <h6>Forma de pagamento</h6>
+                <PagamentoStyled>
+                    <label>
+                        <input type="radio" checked={money} onChange={handlePaymentMethod} name="fav_language"/> 
+                        Dinheiro
+                    </label>
+                </PagamentoStyled>
+                <PagamentoStyled>
+                    <label>
+                        <input type="radio" checked={creditCard} onChange={handlePaymentMethod} name="fav_language"/> 
+                        Cartão de crédito
+                    </label>
+                </PagamentoStyled>
+            </MetodoDePagamentoStyled>
             <BotaoLaranja onClick={placeOrder}>Confirmar</BotaoLaranja>
             <FooterComponents />
         </DivFundoPaginaFooter>
