@@ -1,5 +1,39 @@
 import styled from "styled-components";
 
+export const TituloQuantidadeStyled=styled.div`
+    display: flex;
+    width: 231px;
+    flex-direction: row-reverse;
+
+    .quantidadeAdicionada{
+        width: 33px;
+        max-height: 33px;
+        border-top-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border: solid 1px var(--dark-peach);
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+        text-align: center;
+        color: var(--dark-peach);
+        padding: 5px 0;
+    }
+
+    .nomeProduto{
+        width: 198px;
+        height: 18px;
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+        color: var(--dark-peach);  
+        margin-top: 18px;
+    }
+`
+
 export const TextoCarrinho=styled.p`
     width: 296px;
     height: 18px;

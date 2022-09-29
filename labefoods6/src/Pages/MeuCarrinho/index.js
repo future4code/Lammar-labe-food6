@@ -8,7 +8,7 @@ import { DivFundoPaginaFooter } from "../../Components/Footer/Styled"
 import { HeaderStyled } from "../../Components/Header/Styled.js"
 import { BASE_URL } from "../../Constants/index.js"
 import { GlobalStateContext } from "../../Global/GlobalStateContext"
-import { DadosRestaurante, DivValorTotal, Frete, MetodoDePagamentoStyled, PagamentoStyled, TextoCarrinho } from "./styled"
+import { DadosRestaurante, DivQuantidadeStyled, DivValorTotal, Frete, MetodoDePagamentoStyled, PagamentoStyled, TextoCarrinho, TituloQuantidadeStyled } from "./styled"
 import {IoIosArrowBack} from 'react-icons/io'
 import { toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
@@ -46,8 +46,10 @@ export const MeuCarrinhoPage=(props)=>{
             <CardItens key={index}>
                 <img src={item.photoUrl} alt={item.name}/>
                 <InformacaoProduto>
-                    <p className="quantidade">{item.quantity}</p>
-                    <p className="nome">{item.name}</p>
+                    <TituloQuantidadeStyled>
+                        <p className="quantidadeAdicionada">{item.quantity}</p>
+                        <p className="nomeProduto">{item.name}</p>
+                    </TituloQuantidadeStyled>
                     <p className="descricao">{item.description}</p>
                     <Preco> 
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>

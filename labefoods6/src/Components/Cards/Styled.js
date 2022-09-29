@@ -64,7 +64,7 @@ export const InformacaoProduto=styled.div`
 
     .descricao{
         font-family: 'Roboto', sans-serif;
-        width: 198px;
+        width: 240px;
         height: 30px;
         margin: 6px 17px 6px 8px;
         font-family: Roboto;
@@ -129,7 +129,7 @@ export const Preco=styled.div`
     button{
         width: 90px;
         height: 31px;
-        margin: 5px 0 0 17px;
+        margin: 5px 0 0 9px;
         padding: 8px 20.5px 9px 21.5px;
         border-top-left-radius: 8px;
         border-bottom-right-radius: 8px;
