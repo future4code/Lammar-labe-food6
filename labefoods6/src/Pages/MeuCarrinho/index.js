@@ -10,7 +10,10 @@ import { BASE_URL } from "../../Constants/index.js"
 import { GlobalStateContext } from "../../Global/GlobalStateContext"
 import { DadosRestaurante, DivValorTotal, Frete, MetodoDePagamentoStyled, PagamentoStyled, TextoCarrinho } from "./styled"
 import {IoIosArrowBack} from 'react-icons/io'
-
+import { toast } from "react-toastify";
+import { CircularProgress } from "@mui/material";
+import Stack from '@mui/material/Stack';
+import { DivCarregando } from "../Resultado/styled.js"
 
 export const MeuCarrinhoPage=(props)=>{
 
@@ -76,6 +79,7 @@ export const MeuCarrinhoPage=(props)=>{
     }
 
     const placeOrder=()=>{
+        
         const arr = addProduto.map(({quantity, id}) => {
             return {
                 quantity,
@@ -88,12 +92,42 @@ export const MeuCarrinhoPage=(props)=>{
             paymentMethod: money ? "money" : "creditcard"
         }
 
-        axios.post(`${BASE_URL}/restaurants/${param.id}/order`, body, headers)
-        .then((response)=>{
-            alert("Pedido Criado com sucesso")
-        }).catch((error)=>{
-            alert ("Pedido não realizado")
-        })
+        {carrinho.length > 0 ?
+            axios.post(`${BASE_URL}/restaurants/${param.id}/order`, body, headers)
+            .then((response)=>{
+                toast.success('Pedido realizado com sucesso!', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                localStorage.removeItem("carrinho");
+                
+            }).catch((error)=>{
+                toast.error('Aguarde seu outro pedido ser finalizado.', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+                
+            })
+            :
+            toast.warn('Insira pelo menos 1 item no carrinho.', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });    }
     }
 
     const voltar=()=>{
