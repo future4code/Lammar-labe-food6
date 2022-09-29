@@ -4,7 +4,6 @@ export const CardItens=styled.div`
     display: flex;
     max-width: 328px;
     max-height: 112px;
-    margin: 7px 0 0;
     border-radius: 8px;
     border: solid 1px var(--greyish);
     margin: 5px 20px;
@@ -22,7 +21,7 @@ export const InformacaoProduto=styled.div`
     p{
         width: 166px;
         height: 18px;
-        margin: 18px 49px 0 8px;
+        margin-left: 16px;
         font-family: 'Roboto', sans-serif;
         font-size: 16px;
         font-weight: normal;
@@ -37,7 +36,7 @@ export const InformacaoProduto=styled.div`
         font-family: 'Roboto', sans-serif;
         width: 198px;
         height: 30px;
-        margin: 6px 17px 6px 8px;
+        margin: 6px 0 0 16px;
         font-family: Roboto;
         font-size: 14px;
         font-weight: normal;
@@ -57,7 +56,7 @@ export const Preco=styled.div`
     span{
         width: 108px;
         height: 19px;
-        margin: 6px 17px 15px 8px;
+        margin: 6px 16px;
         font-family: 'Roboto', sans-serif;
         font-size: 16px;
         font-weight: normal;
@@ -71,8 +70,7 @@ export const Preco=styled.div`
     button{
         width: 90px;
         height: 31px;
-        margin: 9px 0 0 17px;
-        padding: 8px 20.5px 9px 21.5px;
+        margin: 9px 0 0 10px;
         border-top-left-radius: 8px;
         border-bottom-right-radius: 8px;
         border: solid 1px var(--black);

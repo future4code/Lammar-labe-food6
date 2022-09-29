@@ -92,7 +92,7 @@ export const MeuCarrinhoPage=(props)=>{
             paymentMethod: money ? "money" : "creditcard"
         }
 
-        {carrinho.length > 0 ?
+        if(carrinho.length > 0){
             axios.post(`${BASE_URL}/restaurants/${param.id}/order`, body, headers)
             .then((response)=>{
                 toast.success('Pedido realizado com sucesso!', {
@@ -118,7 +118,7 @@ export const MeuCarrinhoPage=(props)=>{
                     });
                 
             })
-            :
+        }else{
             toast.warn('Insira pelo menos 1 item no carrinho.', {
                 position: "top-center",
                 autoClose: 2000,
@@ -151,9 +151,9 @@ export const MeuCarrinhoPage=(props)=>{
             undefined
             }
             {carrinho.length > 0 ?
-            <DivFundoPaginaFooter>
+            <div>
                 {carrinho}
-            </DivFundoPaginaFooter>
+            </div>
             :
             <TextoCarrinho>Carrinho vazio</TextoCarrinho>
             }
