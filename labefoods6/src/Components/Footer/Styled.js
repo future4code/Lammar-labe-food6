@@ -9,6 +9,7 @@ export const Footer=styled.footer`
     align-items: center;
     bottom: 0;
     border-top: 1px solid lightgray;
+    background-color: white;
 
     button{
         background-color: white;
@@ -27,11 +28,13 @@ export const Footer=styled.footer`
 export const DivFundoPaginaFooter=styled.div`
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     max-width: 100vw;
-    max-height: 99vh;
     margin: auto;
+    padding-bottom: 10vh;
+
 
     h6{
         width: 328px;

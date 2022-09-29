@@ -5,9 +5,12 @@ import { BotaoLaranja } from "../../Components/Botoes/Styled.js"
 import { CardItens, InformacaoProduto, Preco } from "../../Components/Cards/Styled"
 import { FooterComponents } from "../../Components/Footer/Footer.js"
 import { DivFundoPaginaFooter } from "../../Components/Footer/Styled"
+import { HeaderStyled } from "../../Components/Header/Styled.js"
 import { BASE_URL } from "../../Constants/index.js"
 import { GlobalStateContext } from "../../Global/GlobalStateContext"
-import { DadosRestaurante, DivValorTotal, Frete, PagamentoStyled, TextoCarrinho } from "./styled"
+import { DadosRestaurante, DivValorTotal, Frete, MetodoDePagamentoStyled, PagamentoStyled, TextoCarrinho } from "./styled"
+import {IoIosArrowBack} from 'react-icons/io'
+
 
 export const MeuCarrinhoPage=(props)=>{
 
@@ -41,7 +44,7 @@ export const MeuCarrinhoPage=(props)=>{
                 <img src={item.photoUrl} alt={item.name}/>
                 <InformacaoProduto>
                     <p className="quantidade">{item.quantity}</p>
-                    <p>{item.name}</p>
+                    <p className="nome">{item.name}</p>
                     <p className="descricao">{item.description}</p>
                     <Preco> 
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
@@ -61,7 +64,7 @@ export const MeuCarrinhoPage=(props)=>{
         }, [addProduto])
         setValorTotal(valorFinal + valorFrete)
         localStorage.setItem("carrinho", JSON.stringify(addProduto))
-    })
+    },[addProduto])
 
     const param = useParams()
 
@@ -93,8 +96,16 @@ export const MeuCarrinhoPage=(props)=>{
         })
     }
 
+    const voltar=()=>{
+        navigate(-1)
+    }
+
     return(
         <DivFundoPaginaFooter>
+            <HeaderStyled>
+                 <button onClick={voltar}> <IoIosArrowBack size="24px" /></button>
+                 <p>Meu carrinho</p>
+            </HeaderStyled>
             {carrinho.length > 0 ? 
             <DadosRestaurante>
                 <img src={infoRestaurante?.logoUrl} alt={infoRestaurante?.name} />
@@ -125,19 +136,21 @@ export const MeuCarrinhoPage=(props)=>{
                 <p className="subtotal">SUBTOTAL:</p> 
                 <p className="valor"> {valorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
             </DivValorTotal>
-            <h6>Forma de pagamento</h6>
-            <PagamentoStyled>
-                <label>
-                    <input type="radio" checked={money} onChange={handlePaymentMethod} name="fav_language"/> 
-                    Dinheiro
-                </label>
-            </PagamentoStyled>
-            <PagamentoStyled>
-                <label>
-                    <input type="radio" checked={creditCard} onChange={handlePaymentMethod} name="fav_language"/> 
-                    Cartão de crédito
-                </label>
-            </PagamentoStyled>
+            <MetodoDePagamentoStyled>
+                <h6>Forma de pagamento</h6>
+                <PagamentoStyled>
+                    <label>
+                        <input type="radio" checked={money} onChange={handlePaymentMethod} name="fav_language"/> 
+                        Dinheiro
+                    </label>
+                </PagamentoStyled>
+                <PagamentoStyled>
+                    <label>
+                        <input type="radio" checked={creditCard} onChange={handlePaymentMethod} name="fav_language"/> 
+                        Cartão de crédito
+                    </label>
+                </PagamentoStyled>
+            </MetodoDePagamentoStyled>
             <BotaoLaranja onClick={placeOrder}>Confirmar</BotaoLaranja>
             <FooterComponents />
         </DivFundoPaginaFooter>

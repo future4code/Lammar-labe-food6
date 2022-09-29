@@ -7,12 +7,10 @@ import { CircularProgress } from "@mui/material";
 import Stack from '@mui/material/Stack';
 import { BASE_URL } from "../../Constants"
 import { goToMeuCarrinho } from "../../Routes/Coordinator"
+import { FooterComponents } from "../../Components/Footer/Footer"
 
 
 export const ResultadoPage=()=>{
-
-    const navigate=useNavigate();
-
     const {addProduto, setAddProduto, isLoading, setIsLoading, detalhesRestaurante, setDetalhesRestaurante, infoRestaurante, setInfoRestaurante}=useContext(GlobalStateContext)
 
     const adicionandoProdutoNoCarrinho = item =>{
@@ -32,6 +30,9 @@ export const ResultadoPage=()=>{
             localStorage.setItem("carrinho", JSON.stringify(novoCarrinho))
         }
     }
+    
+    const navigate=useNavigate();
+    const param = useParams()
     const token = localStorage.getItem("token")
     const headers={
         headers:{
@@ -39,7 +40,6 @@ export const ResultadoPage=()=>{
         }
     }
 
-    const param = useParams()
 
     const obterRestaurantes=()=>{
         setIsLoading(true)
@@ -136,9 +136,6 @@ export const ResultadoPage=()=>{
         )
     })
 
-    console.log(addProduto)
-
-
     const acompanhamentos=detalhesRestaurante.filter((item, index)=>{
         if (item.category === "Acompanhamento"){
             return(
@@ -195,9 +192,6 @@ export const ResultadoPage=()=>{
         )
     })
 
-    const onClickCarrinho=(id) =>{
-        goToMeuCarrinho(navigate, id)
-    }
 
     return(
         <DivFundoResultado>
@@ -212,7 +206,6 @@ export const ResultadoPage=()=>{
             :
             <>
                 <CardRestaurante>
-                    <button onClick={()=>onClickCarrinho(infoRestaurante?.id)}>Carrinho</button>
                     <img src={infoRestaurante?.logoUrl}  alt={infoRestaurante?.name}/>
                     <p>{infoRestaurante?.name}</p>
                     <span className="categoria">{infoRestaurante?.category}</span>
@@ -251,6 +244,8 @@ export const ResultadoPage=()=>{
                 }
             </>
             }
+
+            <FooterComponents />
         </DivFundoResultado>
     )
 

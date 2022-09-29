@@ -122,6 +122,12 @@ export const Frete=styled.div`
         color: #000;
             }
 `
+
+export const MetodoDePagamentoStyled=styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5vh;
+`
 export const PagamentoStyled=styled.div`
     display: flex;
     width: 360px;
