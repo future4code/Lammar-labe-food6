@@ -7,27 +7,20 @@ import { CircularProgress } from "@mui/material";
 import Stack from '@mui/material/Stack';
 import { BASE_URL } from "../../Constants"
 import { FooterComponents } from "../../Components/Footer/Footer"
+import BasicModal from "../../Components/Modal/Modal"
 
 
 export const ResultadoPage=()=>{
     const {addProduto, setAddProduto, isLoading, setIsLoading, detalhesRestaurante, setDetalhesRestaurante, infoRestaurante, setInfoRestaurante}=useContext(GlobalStateContext)
 
-    const adicionandoProdutoNoCarrinho = item =>{
-        let procurarProduto= addProduto.find(elemento => elemento.id === item.id)
-
-        if(procurarProduto){
-            procurarProduto.quantity +=1
-            setAddProduto(addProduto)
-            localStorage.setItem("carrinho", JSON.stringify(addProduto))
-        }else{
-            item ={
-                ...item,
-                quantity: 1
-            }
-            const novoCarrinho = [...addProduto, item]
-            setAddProduto(novoCarrinho)
-            localStorage.setItem("carrinho", JSON.stringify(novoCarrinho))
+    const adicionandoProdutoNoCarrinho = (item, quantidade) => {
+        item = {
+            ...item,
+            quantity: quantidade
         }
+        const newCarrinho = [...addProduto, item]
+        setAddProduto(newCarrinho)
+        localStorage.setItem("carrinho", JSON.stringify(newCarrinho))
     }
     
     const navigate=useNavigate();
@@ -59,18 +52,8 @@ export const ResultadoPage=()=>{
 
     detalhesRestaurante.map((item, index)=>{
         return (
-                <CardItens key={index}>
-                    <img src={item.photoUrl} alt={item.name}/>
-                    <InformacaoProduto>
-                        <p>{item.quantity}</p>
-                        <p>{item.name}</p>
-                        <span>{item.description}</span>
-                        <Preco>
-                            <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                            <button onClick={()=> adicionandoProdutoNoCarrinho(item)}>Adicionar</button>
-                        </Preco>
-                    </InformacaoProduto>
-                </CardItens>
+            <>
+            </>
         )
     })
 
@@ -95,7 +78,7 @@ export const ResultadoPage=()=>{
                     <span>{item.description}</span>
                     <Preco>
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                        <button onClick={()=> adicionandoProdutoNoCarrinho(item)}>Adicionar</button>
+                        <BasicModal item={item} add={adicionandoProdutoNoCarrinho} />
                     </Preco>
                 </InformacaoProduto>
             </CardItens>
@@ -122,7 +105,7 @@ export const ResultadoPage=()=>{
                     <span>{item.description}</span>
                     <Preco>
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                        <button onClick={()=> adicionandoProdutoNoCarrinho(item)}>Adicionar</button>
+                        <BasicModal item={item} add={adicionandoProdutoNoCarrinho} />
                     </Preco>
                 </InformacaoProduto>
             </CardItens>
@@ -149,7 +132,7 @@ export const ResultadoPage=()=>{
                     <span>{item.description}</span>
                     <Preco>
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                        <button onClick={()=> adicionandoProdutoNoCarrinho(item)}>Adicionar</button>
+                        <BasicModal item={item} add={adicionandoProdutoNoCarrinho} />
                     </Preco>
                 </InformacaoProduto>
             </CardItens>
@@ -176,7 +159,7 @@ export const ResultadoPage=()=>{
                     <span>{item.description}</span>
                     <Preco>
                         <span> {(item.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
-                        <button onClick={()=> adicionandoProdutoNoCarrinho(item)}>Adicionar</button>
+                        <BasicModal item={item} add={adicionandoProdutoNoCarrinho} />
                     </Preco>
                 </InformacaoProduto>
             </CardItens>
@@ -202,7 +185,7 @@ export const ResultadoPage=()=>{
                     <span className="categoria">{infoRestaurante?.category}</span>
                     <div>
                         <span className="tempo">{infoRestaurante?.deliveryTime} min</span>
-                        <span className="delivery"> {infoRestaurante?.shipping.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                        <span className="delivery"> {infoRestaurante?.shipping/* .toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) */}</span>
                     </div>
                         <span className="endereco"> {infoRestaurante?.address} </span>
                 </CardRestaurante>
