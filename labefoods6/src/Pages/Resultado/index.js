@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import { BASE_URL } from "../../Constants"
 import { FooterComponents } from "../../Components/Footer/Footer"
 import BasicModal from "../../Components/Modal/Modal"
+import { toast } from "react-toastify"
 
 
 export const ResultadoPage=()=>{
@@ -20,6 +21,15 @@ export const ResultadoPage=()=>{
         }
         const newCarrinho = [...addProduto, item]
         setAddProduto(newCarrinho)
+        toast.success('Item adicionado ao carrinho', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         localStorage.setItem("carrinho", JSON.stringify(newCarrinho))
     }
     

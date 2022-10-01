@@ -1,7 +1,7 @@
 /* export const goToProductsScreen = () => {}; */
 /* export const goToLogin = (navigate) => {navigate("/")}; */
 export const goToSignUp = (navigate) => {navigate("/signup")};
-export const goToLogin = (navigate) => {navigate("/login")};
+export const goToLogin = (navigate) => {navigate("/")};
 export const goToSignup = (navigate) => {navigate("/signup")};
 export const goToBuscar = (navigate) => {navigate("/buscar")};
 export const goToCadastar = (navigate) => {navigate("/cadastrar")};
