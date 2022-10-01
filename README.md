@@ -28,6 +28,7 @@ Logo abaixo fica os dados de entrega do estabelecimento selecionado (Nome, ender
 <p> Ao clicar no botão Confirma, um alert irá informar se o pedido foi realizado com sucesso ou não. Caso o pedido tenha sido efetuado, um banner irá aparecer no fim da tela na pagina do Feed informando os dados do pedido<p>
   <img src="https://user-images.githubusercontent.com/102433664/193413749-f4a80fcd-c2be-4fc7-8c8f-d2f3d3899f28.png" />
 <p>O usuário só poderá realizar um novo pedido após o anterior ter sido concluido (ter passado o tempo de entrega) </p> 
+  <img src="https://user-images.githubusercontent.com/102433664/193414148-6ad7c9ac-e623-44b6-ba0a-59874d3b68e8.png" />
 
 <h4>Meu perfil </h4>
 
