@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react"
+import React, { useState, useEffect, useContext} from "react"
 import { useNavigate } from 'react-router-dom'
 import { useProtectPage } from "../../Hook/useProtectPage";
 import { BASE_URL } from "../../Constants/index.js";
@@ -6,12 +6,18 @@ import axios from 'axios'
 import {
     goToResultadoPage
 } from '../../Routes/Coordinator'
+import { GlobalStateContext } from "../../Global/GlobalStateContext";
+import { InfoPedidoStyled, PedidoEmAndamentoStyled, RelogioStyled } from "./styled";
+import {MdAccessTime} from "react-icons/md"
+import { FooterComponents } from "../../Components/Footer/Footer";
+
 
 
 export const FeedPage=()=>{
     useProtectPage()
     const navigate = useNavigate()
 
+    const {pedidoEmAndamento}=useContext(GlobalStateContext)
     const token = localStorage.getItem('token')
 
 /*     window.onbeforeunload = () => {
@@ -68,6 +74,23 @@ export const FeedPage=()=>{
                     </div>
                 )
             })}
+
+            {pedidoEmAndamento?.totalPrice > 0 ?
+                <PedidoEmAndamentoStyled>
+                    <RelogioStyled>
+                        <p><MdAccessTime size="32px" color="white"/></p>
+                    </RelogioStyled>
+                    <InfoPedidoStyled>
+                        <p className="status">Pedido em andamento</p>
+                        <p className="restaurante">{pedidoEmAndamento?.restaurantName}</p>
+                        <p className="pagamento">SUBTOTAL: {pedidoEmAndamento?.totalPrice.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
+                    </InfoPedidoStyled>
+                </PedidoEmAndamentoStyled>
+                :
+                null
+            }
+            <FooterComponents />
+
 
         </div>
 
