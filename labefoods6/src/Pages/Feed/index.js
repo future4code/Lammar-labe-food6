@@ -14,9 +14,6 @@ export const FeedPage=()=>{
 
     const token = localStorage.getItem('token')
 
-    window.onbeforeunload = () => {
-        localStorage.removeItem('token');
-      }
 
       const [feed, setFeed] = useState([])
       
