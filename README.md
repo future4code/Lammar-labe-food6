@@ -25,7 +25,9 @@
 <p> Na parte superior da tela irá aparecer os dados de entrega do usuário, para que o mesmo se certifique de estar pedindo para o local correto. 
 Logo abaixo fica os dados de entrega do estabelecimento selecionado (Nome, endereço e tempo de entrega) </p>
 <p>Nessa página o usuário poderá revisar todo o seu pedido, como o item adicionado ao carrinho e a quantidade inserida, também há a opção de remover o item. E por útimo, será renderizado o valor do frete cobrado pelo estabelecimento, valor final do pedido e a opção do método de pagamento </p>
-<p> Ao clicar no botão Confirma, um alert irá informar se o pedido foi realizado com sucesso ou não. Caso o pedido tenha sido efetuado, um banner irá aparecer no fim da tela na pagina do Feed informando os dados do pedido. O usuário só poderá realizar um novo pedido após o anterior ter sido concluido (ter passado o tempo de entrega) </p> 
+<p> Ao clicar no botão Confirma, um alert irá informar se o pedido foi realizado com sucesso ou não. Caso o pedido tenha sido efetuado, um banner irá aparecer no fim da tela na pagina do Feed informando os dados do pedido<p>
+  <img src="https://user-images.githubusercontent.com/102433664/193413749-f4a80fcd-c2be-4fc7-8c8f-d2f3d3899f28.png" />
+<p>O usuário só poderá realizar um novo pedido após o anterior ter sido concluido (ter passado o tempo de entrega) </p> 
 
 <h4>Meu perfil </h4>
 
