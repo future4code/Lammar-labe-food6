@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "../../Hook/useForm";
 import { SignupPageContainer, FormContainer  } from "../SignUp/styled";
 import { BASE_URL, appName } from "../../Constants/index.js";
@@ -7,7 +7,6 @@ import { clear } from "@testing-library/user-event/dist/clear";
 import axios from 'axios'
 
 export const SignupPage=()=>{
-
 
     const [isEmailValid, setIsEmailValid] = useState(true);
     const [isNameValid, setIsNameValid] = useState(true);
