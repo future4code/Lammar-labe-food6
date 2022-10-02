@@ -6,7 +6,7 @@ export const NumeroInput = ({value, onChange}) =>{
         <InputStyled
             required
             id="outlined-required"
-            min={2}
+            min={1}
             label="Número" 
             variant="outlined"
             name="number"

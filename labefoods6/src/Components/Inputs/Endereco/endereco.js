@@ -13,6 +13,7 @@ export const EnderecoInput = ({value, onChange}) =>{
             value={value}
             onChange={onChange}
             placeholder="Rua / Av."
+            minLength={4}
         />
     )
 
