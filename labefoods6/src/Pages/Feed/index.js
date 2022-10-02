@@ -38,9 +38,11 @@ export const FeedPage=()=>{
           })
       }, [])
 
-    const onClickCard = (id) => {
-        goToResultadoPage(id)
-    }
+    // const onClickCard = (id) => {
+    //     goToResultadoPage(id)
+    // }
+
+    const goToResultadoPage = (id) => { navigate(`/resultado/${id}`) };
 
     const [searchTerm, setSearchTerm] = useState('')
     return(
@@ -62,8 +64,9 @@ export const FeedPage=()=>{
                 }
             }).map((val, key) => {
                 return (
-                    <div>
-                        <div>
+                    
+                    <div> 
+                        <div onClick={() => goToResultadoPage(val.id)}>
                         <p>{val.name}</p>
                             <img src={val.logoUrl} width="47" height="47" />
                         </div>
