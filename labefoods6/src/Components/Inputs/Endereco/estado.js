@@ -13,6 +13,7 @@ export const EstadoInput = ({value, onChange}) =>{
         value={value}
         onChange={onChange}
         placeholder="Estado"
+        minLength={2}
         />
     )
 
