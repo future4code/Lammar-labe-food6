@@ -6,11 +6,9 @@ import { SignupPageContainer, FormContainer  } from "../SignUp/styled";
 import { BASE_URL, validateCPF, validateEmail, validatePassword, validateName} from "../../Constants/index.js";
 import { clear } from "@testing-library/user-event/dist/clear";
 import axios from 'axios'
-
 import {
     goToCadastar
 } from '../../Routes/Coordinator'
-
 export const SignupPage=()=>{
 
     const navigate = useNavigate()
