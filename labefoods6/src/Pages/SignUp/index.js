@@ -10,7 +10,6 @@ import {
     goToCadastar
 } from '../../Routes/Coordinator'
 export const SignupPage=()=>{
-
     const navigate = useNavigate()
 
     const [ form, onChange] = useForm({

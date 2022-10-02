@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import { SignupPage } from '../Pages/SignUp'
-import  { BuscarPage } from '../Pages/Busca'
+import { BuscarPage } from '../Pages/Busca'
 import { CadastroPage } from '../Pages/Cadastro'
 import { EditarPage } from '../Pages/Editar'
 import { FeedPage } from '../Pages/Feed'
