@@ -20,9 +20,7 @@ export const FeedPage=()=>{
     const {pedidoEmAndamento}=useContext(GlobalStateContext)
     const token = localStorage.getItem('token')
 
-/*     window.onbeforeunload = () => {
-        localStorage.removeItem('token');
-      } */
+
 
       const [feed, setFeed] = useState([])
       
