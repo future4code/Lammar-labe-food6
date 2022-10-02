@@ -6,9 +6,15 @@ import { SignupPageContainer, FormContainer  } from "../SignUp/styled";
 import { BASE_URL, validateCPF, validateEmail, validatePassword, validateName} from "../../Constants/index.js";
 import { clear } from "@testing-library/user-event/dist/clear";
 import axios from 'axios'
+import Logo from "../../img/logo-future-eats-invert.png"
 import {
     goToCadastar
 } from '../../Routes/Coordinator'
+
+import {
+    SignupContainer
+
+} from './styled'
 export const SignupPage=()=>{
     const navigate = useNavigate()
 
@@ -62,83 +68,97 @@ export const SignupPage=()=>{
         isEmailValid && isPasswordValid && isCpfValid && isNameValid && isPasswordValid && userRegister()  
     }
     return(
-         <SignupPageContainer >
-            <FormContainer>
-                {/* <form onSubmit={onSubmit}>
-                    
-                    <input 
-                        name='name' 
-                        type="name" 
-                        value={form.name} 
-                        onChange={onChange} 
-                        placeholder="Nome"
-                        isValid={isNameValid}
-                        >                        
-                    </input>
-                    <input 
-                        name='email' 
-                        type="email" 
-                        value={form.email} 
-                        onChange={onChange} 
-                        placeholder="Email"
-                        isValid={isEmailValid}
-                        >
-                    </input>
-                    <input
-                        name='cpf' 
-                        type="number" 
-                        value={form.cpf} 
-                        onChange={onChange} 
-                        placeholder="CPF"
-                        
-                        isValid={isCpfValid}>     
-                                         
-                    </input>
-                    <input
-                        name='password' 
-                        type="password" 
-                        value={form.password} 
-                        onChange={onChange} 
-                        placeholder="Senha"
-                        isValid={isPasswordValid}
-                        >                        
-                    </input><br></br>
-                    <input
-                        name='password-confirm' 
-                        type="password" 
-                        value={confirmPassword}
-                        onChange={(e) => {setConfirmPassword(e.target.value)}} label="Confirmar*" 
-                        placeholder="Confirme a senha anterior"   
-                        isValid={confirmPassword}
-                    >
-                    
-                    </input>
-                    <button type='submit'>Criar</button>
-                </form> */}
-                            {isValid ?
+         <SignupContainer >
+            <img src={Logo} />       
+            <p>Cadastrar</p>
+
+{isValid ?
 
 <form onSubmit={onSubmit}>
-    <input name="name" value={form.name} onChange={onChange} color="#B8B8B8" isValid={isNameValid}/>
-    <input name="email" value={form.email} onChange={onChange} color="#B8B8B8" isValid={isEmailValid}/>
-    <input name="cpf" value={form.cpf} onChange={onChange} color="#B8B8B8" isValid={isCpfValid}/>
-    <input type="password" name="password" value={form.password} onChange={onChange} label="Senha*" placeholder="Mínimo 6 caracteres" color="#B8B8B8" isValid={isPasswordValid} errorMessage="A senha deve possuir no mínimo 6 caracteres"/>
-    <input type="password" name="password-check" value={confirmPassword} onChange={(e) => {setConfirmPassword(e.target.value)}} label="Confirmar*" placeholder="Confirme a senha anterior" color="#B8B8B8" isValid={confirmPassword} errorMessage="Deve ser a mesma que a anterior."/>
+    <input 
+        name="name" 
+        value={form.name} 
+        onChange={onChange} 
+        isValid={isNameValid}
+        placeholder="Nome e Sobrenome"
+    />
+    <input
+         name="email" 
+         value={form.email} 
+         onChange={onChange} 
+         isValid={isEmailValid}
+         placeholder="email@email.com"
+    />
+    <input 
+         name="cpf" 
+         value={form.cpf} 
+         onChange={onChange}  
+         isValid={isCpfValid}
+         placeholder="000.000.000.00"
+    />
+    <input 
+        type="password" 
+        name="password" 
+        value={form.password} 
+        onChange={onChange} label="Senha*" 
+        placeholder="Mínimo 6 caracteres"
+        isValid={isPasswordValid} 
+        errorMessage="A senha deve possuir no mínimo 6 caracteres"
+    />
+    <input 
+        type="password" 
+        name="password-check" 
+        value={confirmPassword} 
+        onChange={(e) => {setConfirmPassword(e.target.value)}} label="Confirmar*" 
+        placeholder="Confirme a senha anterior" 
+        isValid={confirmPassword} errorMessage="Deve ser a mesma que a anterior."
+    />
     <button type='submit'>Criar</button>
 </form>
 
 : 
 
 <form onSubmit={onSubmit}>
-    <input name="name" value={form.name} onChange={onChange} color="#e02020" isValid={isNameValid}/>
-    <input name="email" value={form.email} onChange={onChange} color="#e02020" isValid={isEmailValid}/>
-    <input name="cpf" value={form.cpf} onChange={onChange} color="#e02020" isValid={isCpfValid}/>
-    <input type="password" name="password" value={form.password} onChange={onChange} label="Senha*" placeholder="Mínimo 6 caracteres" color="#e02020" isValid={isPasswordValid} errorMessage="A senha deve possuir no mínimo 6 caracteres"/>
-    <input type="password" name="password-check" value={confirmPassword} onChange={(e) => {setConfirmPassword(e.target.value)}} label="Confirmar*" placeholder="Confirme a senha anterior" color="#e02020" isValid={confirmPassword} errorMessage="Deve ser a mesma que a anterior."/>
+    <input 
+        name="name" 
+        value={form.name} 
+        onChange={onChange}  
+        isValid={isNameValid}
+    />
+    <input 
+        name="email" 
+        value={form.email} 
+        onChange={onChange}  
+        isValid={isEmailValid}
+    />
+    <input 
+        name="cpf" 
+        value={form.cpf} 
+        onChange={onChange} 
+        isValid={isCpfValid}
+    />
+    <input 
+        type="password" 
+        name="password" 
+        value={form.password} 
+        onChange={onChange} label="Senha*" 
+        placeholder="Mínimo 6 caracteres" color="#e02020" 
+        isValid={isPasswordValid} 
+        errorMessage="A senha deve possuir no mínimo 6 caracteres"
+    />
+    <input 
+        type="password" 
+        name="password-check" 
+        value={confirmPassword} 
+        onChange={(e) => {setConfirmPassword(e.target.value)}} 
+        label="Confirmar*" placeholder="Confirme a senha anterior"
+        isValid={confirmPassword} 
+        errorMessage="Deve ser a mesma que a anterior."/>
+
     {isEmailValid && isPasswordValid && isCpfValid && isNameValid && confirmPassword ? <p>{errorText}.</p> : undefined}
     <button type='submit'>Criar</button>
 </form>}
-            </FormContainer>
-        </SignupPageContainer >
+        </SignupContainer>
     )
 }
 
