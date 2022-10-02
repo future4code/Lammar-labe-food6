@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { BASE_URL } from "../Constants"
+import { goToLogin } from "../Routes/Coordinator"
 import { GlobalStateContext } from "./GlobalStateContext"
 
 export const GlobalState = (props) =>{
@@ -9,6 +10,7 @@ export const GlobalState = (props) =>{
     const [infoRestaurante, setInfoRestaurante]=useState(JSON.parse(localStorage.getItem("restaurante")) || ("") )
     const [detalhesRestaurante, setDetalhesRestaurante]=useState([])
     const [pedidoEmAndamento, setPedidoEmAndamento]=useState([])
+    const [busca, setBuscar]=useState("")
 
 
     const token = localStorage.getItem("token")
@@ -17,6 +19,7 @@ export const GlobalState = (props) =>{
             auth: token
         }
     }
+
         //PEDIDO EM ANDAMENTO:
         const pedidoAtual = () => {
             axios.get(`${BASE_URL}/active-order`, headers)
@@ -29,7 +32,7 @@ export const GlobalState = (props) =>{
             pedidoAtual()
         },[])
 
-    const data ={addProduto, setAddProduto, isLoading, setIsLoading, infoRestaurante, setInfoRestaurante, detalhesRestaurante, setDetalhesRestaurante, pedidoEmAndamento }
+    const data ={busca, setBuscar, addProduto, setAddProduto, isLoading, setIsLoading, infoRestaurante, setInfoRestaurante, detalhesRestaurante, setDetalhesRestaurante, pedidoEmAndamento, }
 
     return(
         <GlobalStateContext.Provider value={data}>
