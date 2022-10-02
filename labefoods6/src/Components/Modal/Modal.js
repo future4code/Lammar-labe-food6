@@ -37,7 +37,7 @@ export default function BasicModal({item, add}) {
             <h2>Selecione a quantidade desejada</h2>
             <form>
               <select required onChange={e => setQuantity(e.target.value)} value={quantity} name="quantity"> 
-                  <option value={""} type="Select">0</option>
+                  <option selected disabled value={""} type="Select">0</option>
                   <option value={1}>1</option>
                   <option value={2}>2</option>
                   <option value={3}>3</option>
