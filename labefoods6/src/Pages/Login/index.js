@@ -6,9 +6,16 @@ import { useForm } from '../../Hook/useForm'
 import { BASE_URL, appName } from "../../Constants/index.js";
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import Logo from "../../img/logo-future-eats-invert.png"
 import {
     LooginPageContainer,
     FormContainer,
+    InputEmail,
+    LoginPageStyle,
+    TextContainer,
+    Container,
+    Content,
+    Button
 
 } from './styled'
 
@@ -48,16 +55,20 @@ const LoginPage =()=>{
         setShowPassword(!showPassword)
     }
     return( 
-        <LooginPageContainer>
-            <FormContainer>
-                <form onSubmit={onSubmit}>
-                    
-                    <input 
+
+            <Container>
+                <Content>
+            <img src={Logo} />       
+            <p>Entrar</p>
+   
+                <form onSubmit={onSubmit}>                   
+                    <input
                         name='email' 
                         type="email" 
                         value={form.email} 
                         onChange={onChangeInputs} 
-                        placeholder="Email"></input>
+                        placeholder="email@email.com">
+                    </input>
                 </form>
                 <form onSubmit={onSubmit}>
                     <input  
@@ -65,12 +76,13 @@ const LoginPage =()=>{
                         type="password" 
                         value={form.password} 
                         onChange={onChangeInputs} 
-                        placeholder="Sen"></input><br></br>
-                    <button type='submit'>Login</button>
+                        placeholder="Mínimo 6 caracteres">
+                    </input><br></br>
+                    <button>Entrar</button>
                 </form>
                 <h1>Não possui cadastro? <Link to="/signup">Clique aqui</Link></h1>
-            </FormContainer>
-        </LooginPageContainer>
+                </Content>
+                </Container>
     )
 }
 export default LoginPage;
