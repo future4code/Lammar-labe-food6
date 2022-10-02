@@ -11,8 +11,6 @@ import { InfoPedidoStyled, PedidoEmAndamentoStyled, RelogioStyled } from "./styl
 import {MdAccessTime} from "react-icons/md"
 import { FooterComponents } from "../../Components/Footer/Footer";
 
-
-
 export const FeedPage=()=>{
     useProtectPage()
     const navigate = useNavigate()

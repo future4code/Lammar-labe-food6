@@ -27,4 +27,20 @@ export const HeaderStyled=styled.header`
         color: #000;
         margin-left: 108px;
     }
+
+    .meuPerfil{
+        width: 360px;
+        height: 19px;
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+        text-align: center;
+        color: #000;
+        margin-top: 13px;
+        padding-bottom: 12px;
+    }
 `
