@@ -2,7 +2,7 @@
 
 <p>Projeto final do curso de Desenvolvimento Web Front End da Labenu.</p>
 
-**SURGE**: 
+**SURGE**: witty-wrench.surge.sh
 
 <h2>O que funciona no projeto:</h2>
 
