@@ -56,41 +56,75 @@ export const Content = styled.div`
     margin-top: 40px;
     padding: 2px;
   }
- p {
-  width: 296px;
-  height: 28px;
-  text-align: center;
-  color: var(--black);
-  text-decoration: none;
-  font-size: 26px;
-}
 
-h1 {
-  font-size:16px;
-  padding: 20px;
-}
+  p {
+    width: 296px;
+    height: 28px;
+    text-align: center;
+    color: var(--black);
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Roboto;
+
+  }
+
+  h1 {
+    width: 296px;
+    height: 18px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    text-align: center;
+    color: #000;
+    margin-top: 28px;
+  }
+
   form {
     display: flex;
     flex-direction: column;
+
     input {
       width: 260px;
       height: 16px;
-      margin: 1rem 0 0;
+      margin: 8px 0 ;
       padding: 19px 48px 19px 16px;
       border-radius: 2px;
       border: solid 1px var(--greyish);
-
     }
-
-
     button {
         width: 328px;
         height: 42px;
         padding: 12px 16px;
         border-radius: 2px;
+        border: 2px solid var(--dark-peach);
         background-color: var(--dark-peach);
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+        text-align: center;
+        color: #000;
       }
     }
-  }
 `;
 
+export const VisualizarSenhaStyled=styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .olho{
+    border: none;
+    background-color: transparent;
+    width: 24px;
+    position: fixed;
+    right: 42vw;
+  }
+`

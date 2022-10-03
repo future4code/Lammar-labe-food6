@@ -8,14 +8,19 @@ import axios from 'axios'
 import Logo from "../../img/logo-future-eats-invert.png"
 import {
     Container,
-    Content
+    Content,
+    Button,
+    VisualizarSenhaStyled
 } from './styled'
+import {BsEyeFill} from 'react-icons/bs'
+import {BsEyeSlashFill} from 'react-icons/bs'
 
 const LoginPage =()=>{
     useProtectPage()
     const navigate = useNavigate()
 
-    const [showPassword, setShowPassword] = useState(false);
+    const [isEmailValid, setIsEmailValid] = useState(true);
+    const [isPasswordValid, setIsPasswordValid] = useState(true);
     
     const [ form, onChangeInputs, clearInputs] = useForm({
         email: "",
@@ -41,15 +46,19 @@ const LoginPage =()=>{
       };
   
 
+    const [show, setShow]=useState(false)
+    const handleClick = () => setShow(!show)
+
     return( 
 
-            <Container>
-                <Content>
-            <img src={Logo} />       
-            <p>Entrar</p>
-   
+    return( 
+        <Container>
+            <Content>
+                <img src={Logo} alt="Logo da empresa"/>       
+                <p>Entrar</p>
                 <form onSubmit={onSubmit}>                   
                     <input
+                        required
                         name='email' 
                         type="email" 
                         value={form.email} 
@@ -58,18 +67,22 @@ const LoginPage =()=>{
                     </input>
                 </form>
                 <form onSubmit={onSubmit}>
-                    <input  
-                        name='password' 
-                        type="password" 
-                        value={form.password} 
-                        onChange={onChangeInputs} 
-                        placeholder="Mínimo 6 caracteres">
-                    </input><br></br>
-                    <button>Entrar</button>
+                    <VisualizarSenhaStyled>
+                        <input
+                            required
+                            name='password' 
+                            type= {show? "text" : "password"}
+                            value={form.password} 
+                            onChange={onChangeInputs} 
+                            placeholder="Mínimo 6 caracteres">
+                        </input>
+                       <p className='olho'> {show? <BsEyeFill size="20px" onClick={handleClick} className="icone" /> : <BsEyeSlashFill size="20px" onClick={handleClick} className="icone" />} </p>
+                    </VisualizarSenhaStyled>
+                    <button >Entrar</button>
                 </form>
                 <h1>Não possui cadastro? <Link to="/signup">Clique aqui</Link></h1>
-                </Content>
-                </Container>
+            </Content>
+        </Container>
     )
 }
 export default LoginPage;

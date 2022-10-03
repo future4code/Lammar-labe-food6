@@ -31,16 +31,37 @@ export const SignupContainer = styled.main`
       
 
     }
-
-    p {
-      margin: 1% 0;
-    }
+  
 
     button {
       width: 328px;
       height: 42px;
       border-radius: 2px;
       background-color: var(--dark-peach);
-
+      margin-top: 16px;
   }
-`;
+}
+`
+
+export const TituloPageStyled=styled.p`
+    width: 296px;
+    height: 28px;
+    text-align: center;
+    color: var(--black);
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Roboto;
+`
+
+export const VisualizarSenhaStyled=styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .show{
+    border: none;
+    background-color: transparent;
+    width: 24px;
+    padding: 0 0.5vw ;
+  }
+`
