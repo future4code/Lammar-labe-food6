@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react"
-import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "../../Hook/useForm";
 import { SignupPageContainer, FormContainer, VisualizarSenhaStyled, TituloPageStyled  } from "../SignUp/styled";
@@ -40,7 +39,6 @@ export const SignupPage=()=>{
     const userRegister = (event) => {
         axios.post(`${BASE_URL}/signup`, form)
         .then((res) => {
-            alert("ok")
             localStorage.setItem("token", res.data.token)
             localStorage.setItem("ProductCart", JSON.stringify([]))
             goToCadastar(navigate)

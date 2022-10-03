@@ -1,23 +1,16 @@
 import React, { useState } from 'react'
-import {goToSignUp} from '../../Routes/Coordinator'
 import { useNavigate } from 'react-router-dom'
 import { useProtectPage } from "../../Hook/useProtectPage";
 import { useForm } from '../../Hook/useForm'
-import { BASE_URL, appName } from "../../Constants/index.js";
+import { BASE_URL } from "../../Constants/index.js";
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Logo from "../../img/logo-future-eats-invert.png"
 import {
-    LooginPageContainer,
-    FormContainer,
-    InputEmail,
-    LoginPageStyle,
-    TextContainer,
     Container,
     Content,
     Button,
     VisualizarSenhaStyled
-
 } from './styled'
 import {BsEyeFill} from 'react-icons/bs'
 import {BsEyeSlashFill} from 'react-icons/bs'
@@ -56,6 +49,7 @@ const LoginPage =()=>{
     const [show, setShow]=useState(false)
     const handleClick = () => setShow(!show)
 
+    return( 
 
     return( 
         <Container>

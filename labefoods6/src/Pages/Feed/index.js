@@ -3,15 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { useProtectPage } from "../../Hook/useProtectPage";
 import { BASE_URL } from "../../Constants/index.js";
 import axios from 'axios'
-import {
-    goToResultadoPage
-} from '../../Routes/Coordinator'
 import { GlobalStateContext } from "../../Global/GlobalStateContext";
-import { DivRenderizacao, InfoPedidoStyled, PedidoEmAndamentoStyled, RelogioStyled } from "./styled";
+import { DivRenderizacao, InfoPedidoStyled, PedidoEmAndamentoStyled, RelogioStyled, Input} from "./styled";
 import {MdAccessTime} from "react-icons/md"
 import { FooterComponents } from "../../Components/Footer/Footer";
 import {DivFundoPaginaFooter} from "../../Components/Footer/Styled"
 import { DivCards, DivInformacaoRestaurante } from "../../Components/Inputs/Buscar/Styled";
+
 
 export const FeedPage=()=>{
     useProtectPage()
@@ -29,7 +27,6 @@ export const FeedPage=()=>{
           }
         })
           .then((res) => {
-            console.log(res.data)
             setFeed(res.data.restaurants)
           }).catch((error) => {
             console.log(error.message)
@@ -41,11 +38,12 @@ export const FeedPage=()=>{
     const [searchTerm, setSearchTerm] = useState('')
     return( 
         <DivFundoPaginaFooter>
-            <input 
+            <Input 
                 type="text"
-                placeholder="Restaurantes"
+                placeholder="Buscar"
                 onChange={event => {
                     setSearchTerm(event.target.value)
+                    
                 }}
             />
 
