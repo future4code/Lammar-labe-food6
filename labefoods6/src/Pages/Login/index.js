@@ -1,30 +1,20 @@
 import React, { useState } from 'react'
-import {goToSignUp} from '../../Routes/Coordinator'
 import { useNavigate } from 'react-router-dom'
 import { useProtectPage } from "../../Hook/useProtectPage";
 import { useForm } from '../../Hook/useForm'
-import { BASE_URL, appName } from "../../Constants/index.js";
+import { BASE_URL } from "../../Constants/index.js";
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Logo from "../../img/logo-future-eats-invert.png"
 import {
-    LooginPageContainer,
-    FormContainer,
-    InputEmail,
-    LoginPageStyle,
-    TextContainer,
     Container,
-    Content,
-    Button
-
+    Content
 } from './styled'
 
 const LoginPage =()=>{
     useProtectPage()
     const navigate = useNavigate()
 
-    const [isEmailValid, setIsEmailValid] = useState(true);
-    const [isPasswordValid, setIsPasswordValid] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
     
     const [ form, onChangeInputs, clearInputs] = useForm({
@@ -51,9 +41,6 @@ const LoginPage =()=>{
       };
   
 
-    const onClickShowPassword = () => {
-        setShowPassword(!showPassword)
-    }
     return( 
 
             <Container>

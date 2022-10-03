@@ -40,6 +40,8 @@ export const RelogioStyled=styled.div`
         margin: 44px 24px;
     }
 
+    
+
 `
 
 export const InfoPedidoStyled=styled.div`
@@ -87,4 +89,14 @@ export const InfoPedidoStyled=styled.div`
         color: #000;
     }
 
+
 `
+
+export const Input = styled.input`
+    width: 300px;
+    height: 36px;
+    padding: 16px 8px 16px 17px;
+    border-radius: 2px;
+    border: solid 1px var(--greyish);
+`
+
