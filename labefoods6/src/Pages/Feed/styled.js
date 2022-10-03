@@ -1,8 +1,26 @@
 import styled from 'styled-components'
 
-export const FeedCard = styled.div`
-width: 20wv;
-border: 1px solid black;
+export const DivRenderizacao=styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+    .semResultado{
+        width: 296px;
+        height: 18px;
+        opacity: 0.89;
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+        text-align: center;
+        color: #000;
+        margin-top: 1vh;
+    }
 
 `
 export const PedidoEmAndamentoStyled=styled.div`
