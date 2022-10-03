@@ -195,7 +195,7 @@ export const ResultadoPage=()=>{
                     <span className="categoria">{infoRestaurante?.category}</span>
                     <div>
                         <span className="tempo">{infoRestaurante?.deliveryTime} min</span>
-                        <span className="delivery"> {infoRestaurante?.shipping/* .toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) */}</span>
+                        <span className="delivery"> {Number(infoRestaurante?.shipping).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
                     </div>
                         <span className="endereco"> {infoRestaurante?.address} </span>
                 </CardRestaurante>

@@ -7,9 +7,11 @@ import {
     goToResultadoPage
 } from '../../Routes/Coordinator'
 import { GlobalStateContext } from "../../Global/GlobalStateContext";
-import { InfoPedidoStyled, PedidoEmAndamentoStyled, RelogioStyled } from "./styled";
+import { DivRenderizacao, InfoPedidoStyled, PedidoEmAndamentoStyled, RelogioStyled } from "./styled";
 import {MdAccessTime} from "react-icons/md"
 import { FooterComponents } from "../../Components/Footer/Footer";
+import {DivFundoPaginaFooter} from "../../Components/Footer/Styled"
+import { DivCards, DivInformacaoRestaurante } from "../../Components/Inputs/Buscar/Styled";
 
 export const FeedPage=()=>{
     useProtectPage()
@@ -17,8 +19,6 @@ export const FeedPage=()=>{
 
     const {pedidoEmAndamento}=useContext(GlobalStateContext)
     const token = localStorage.getItem('token')
-
-
 
       const [feed, setFeed] = useState([])
       
@@ -36,16 +36,11 @@ export const FeedPage=()=>{
           })
       }, [])
 
-    // const onClickCard = (id) => {
-    //     goToResultadoPage(id)
-    // }
-
     const goToResultadoPage = (id) => { navigate(`/resultado/${id}`) };
 
     const [searchTerm, setSearchTerm] = useState('')
-    return(
-        
-        <div>
+    return( 
+        <DivFundoPaginaFooter>
             <input 
                 type="text"
                 placeholder="Restaurantes"
@@ -63,14 +58,16 @@ export const FeedPage=()=>{
             }).map((val, key) => {
                 return (
                     
-                    <div> 
-                        <div onClick={() => goToResultadoPage(val.id)}>
-                        <p>{val.name}</p>
-                            <img src={val.logoUrl} width="47" height="47" />
-                        </div>
-                       <p>Tempo de espera:  {val.deliveryTime} min.</p>
-                       <p>Frete: {val.shipping},00</p><br></br>
-                    </div>
+                    <DivRenderizacao > 
+                        <DivCards key={key} onClick={() => goToResultadoPage(val.id)}>
+                            <img src={val.logoUrl} alt={val.name} />
+                            <p>{val.name}</p>
+                            <DivInformacaoRestaurante>
+                                <span>{val.deliveryTime} min</span>
+                                <span>Frete: {val.shipping.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                            </DivInformacaoRestaurante>
+                        </DivCards>
+                    </DivRenderizacao>
                 )
             })}
 
@@ -91,7 +88,7 @@ export const FeedPage=()=>{
             <FooterComponents />
 
 
-        </div>
+        </DivFundoPaginaFooter>
 
         
     )

@@ -25,6 +25,7 @@ export const DivCards=styled.div`
     border-radius: 8px;
     border: 1px solid #b8b8b8;
     margin: 8px 0 0;
+    cursor: pointer;
     img{
         max-width: 328px;
         height: 120px;
