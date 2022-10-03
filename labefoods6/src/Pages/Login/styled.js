@@ -120,11 +120,11 @@ export const VisualizarSenhaStyled=styled.div`
   align-items: center;
   justify-content: center;
 
-  .show{
+  .olho{
     border: none;
     background-color: transparent;
     width: 24px;
     position: fixed;
-    right: 35vw;
+    right: 42vw;
   }
 `

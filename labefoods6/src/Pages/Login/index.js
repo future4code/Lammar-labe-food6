@@ -82,7 +82,7 @@ const LoginPage =()=>{
                             onChange={onChangeInputs} 
                             placeholder="Mínimo 6 caracteres">
                         </input>
-                       <p className='show'> {show? <BsEyeFill size="20px" onClick={handleClick} className="icone" /> : <BsEyeSlashFill size="20px" onClick={handleClick} className="icone" />} </p>
+                       <p className='olho'> {show? <BsEyeFill size="20px" onClick={handleClick} className="icone" /> : <BsEyeSlashFill size="20px" onClick={handleClick} className="icone" />} </p>
                     </VisualizarSenhaStyled>
                     <button >Entrar</button>
                 </form>
